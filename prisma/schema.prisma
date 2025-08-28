@@ -22,44 +22,47 @@ model Usuario {
   @@map("usuarios")
 }
 
-model Materia {
-  id          Int     @id @default(autoincrement())
-  nombre      String  @db.VarChar(50)
-  codigo      String  @db.VarChar(50)
-  descripcion String? @db.Text
-  creditos    String  @db.VarChar(10)
-
-  matriculas Matricula[]
-
-  @@map("materias")
-}
-
-model Estudiante {
+model Conferencista {
   id              Int    @id @default(autoincrement())
   nombre          String @db.VarChar(50)
   apellido        String @db.VarChar(50)
-  cedula          String @db.VarChar(50)
-  fechaNacimiento String @map("fecha_nacimiento") @db.VarChar(50)
-  ciudad          String @db.VarChar(50)
+  cedula          String @db.VarChar(20)
+  genero          String @db.VarChar(20)
+  ciudad          String @db.VarChar(20)
   direccion       String @db.VarChar(200)
-  telefono        String @db.VarChar(50)
+  fechaNacimiento String @map("fecha_nacimiento") @db.VarChar(50)
+  telefono        String @db.VarChar(20)
   email           String @db.VarChar(50)
+  empresa         String @db.VarChar(50)
 
-  matriculas Matricula[]
+  reservas Reserva[]
 
-  @@map("estudiantes")
+  @@map("conferencistas")
 }
 
-model Matricula {
-  id          Int    @id @default(autoincrement())
-  codigo      Int
-  descripcion String @db.Text
+model Auditorio {
+  id          Int     @id @default(autoincrement())
+  codigo      String  @db.VarChar(20)
+  nombre      String  @db.VarChar(50)
+  ubicacion   String  @db.VarChar(50)
+  capacidad   String  @db.VarChar(20)
+  descripcion String? @db.VarChar(200)
 
-  estudianteId Int        @map("estudiante_id")
-  estudiante   Estudiante @relation(fields: [estudianteId], references: [id])
+  reservas Reserva[]
 
-  materiaId Int     @map("materia_id")
-  materia   Materia @relation(fields: [materiaId], references: [id])
+  @@map("auditorios")
+}
 
-  @@map("matriculas")
+model Reserva {
+  id          Int     @id @default(autoincrement())
+  codigo      String  @db.VarChar(20)
+  descripcion String? @db.VarChar(200)
+
+  conferencistaId Int           @map("conferencista_id")
+  conferencista   Conferencista @relation(fields: [conferencistaId], references: [id])
+
+  auditorioId Int       @map("auditorio_id")
+  auditorio   Auditorio @relation(fields: [auditorioId], references: [id])
+
+  @@map("reservas")
 }

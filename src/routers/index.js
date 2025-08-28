@@ -6,26 +6,26 @@ import {
   confirmUser,
 } from "../controllers/userController.js";
 import {
-  getMaterias,
-  getMateriaById,
-  createMateria,
-  updateMateria,
-  deleteMateria,
-} from "../controllers/materiaController.js";
+  getConferencistas,
+  getConferencistaById,
+  createConferencista,
+  updateConferencista,
+  deleteConferencista,
+} from "../controllers/conferencistaController.js";
 import {
-  getEstudiantes,
-  getEstudianteById,
-  createEstudiante,
-  updateEstudiante,
-  deleteEstudiante,
-} from "../controllers/estudianteController.js";
+  getAuditorios,
+  getAuditorioById,
+  createAuditorio,
+  updateAuditorio,
+  deleteAuditorio,
+} from "../controllers/auditorioController.js";
 import {
-  getMatriculas,
-  getMatriculaById,
-  createMatricula,
-  updateMatricula,
-  deleteMatricula,
-} from "../controllers/matriculaController.js";
+  getReservas,
+  getReservaById,
+  createReserva,
+  updateReserva,
+  deleteReserva,
+} from "../controllers/reservaController.js";
 
 const router = Router();
 
@@ -34,28 +34,28 @@ router.post("/users/register", registerUser);
 router.post("/users/login", loginUser);
 router.get("/users/confirm/:token", confirmUser);
 
-// Rutas protegidas (requieren autenticación con el middleware)
+// Rutas protegidas (requieren autenticación)
 router.use(authMiddleware);
 
-// Rutas para Materias
-router.get("/materias", getMaterias);
-router.get("/materias/:id", getMateriaById);
-router.post("/materias", createMateria);
-router.put("/materias/:id", updateMateria);
-router.delete("/materias/:id", deleteMateria);
+// Rutas para Conferencistas
+router.get("/conferencistas", getConferencistas);
+router.get("/conferencistas/:id", getConferencistaById);
+router.post("/conferencistas", createConferencista);
+router.put("/conferencistas/:id", updateConferencista);
+router.delete("/conferencistas/:id", deleteConferencista);
 
-// Rutas para Estudiantes
-router.get("/estudiantes", getEstudiantes);
-router.get("/estudiantes/:id", getEstudianteById);
-router.post("/estudiantes", createEstudiante);
-router.put("/estudiantes/:id", updateEstudiante);
-router.delete("/estudiantes/:id", deleteEstudiante);
+// Rutas para Auditorios
+router.get("/auditorios", getAuditorios);
+router.get("/auditorios/:id", getAuditorioById);
+router.post("/auditorios", createAuditorio);
+router.put("/auditorios/:id", updateAuditorio);
+router.delete("/auditorios/:id", deleteAuditorio);
 
-// Rutas para Matrículas
-router.get("/matriculas", getMatriculas);
-router.get("/matriculas/:id", getMatriculaById);
-router.post("/matriculas", createMatricula);
-router.put("/matriculas/:id", updateMatricula);
-router.delete("/matriculas/:id", deleteMatricula);
+// Rutas para Reservas
+router.get("/reservas", getReservas);
+router.get("/reservas/:id", getReservaById);
+router.post("/reservas", createReserva);
+router.put("/reservas/:id", updateReserva);
+router.delete("/reservas/:id", deleteReserva);
 
 export default router;
